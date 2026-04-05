@@ -2,6 +2,7 @@ package com.souza.estoque.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -10,7 +11,9 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET = "minha-chave-secreta-super-segura-12345678";
+    @Value("${jwt.secret}")
+    private String SECRET;
+
     private static final long EXPIRATION = 86400000;
 
     private SecretKey getKey() {

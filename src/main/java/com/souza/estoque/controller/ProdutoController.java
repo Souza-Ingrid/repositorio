@@ -2,6 +2,7 @@ package com.souza.estoque.controller;
 
 import com.souza.estoque.model.Produto;
 import com.souza.estoque.service.produtoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +29,12 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> criar(@RequestBody Produto produto) {
+    public ResponseEntity<Produto> criar(@Valid @RequestBody Produto produto) {
         return ResponseEntity.status(201).body(produtoService.criar(produto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto produto) {
+    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody Produto produto) {
         return ResponseEntity.ok(produtoService.atualizar(id, produto));
     }
 
